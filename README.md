@@ -1,13 +1,13 @@
 # Client MVC API
 
-Gestione della parte front-end in react native con chiamate REST
+Gestione della parte front-end in react native con chiamate REST a un qualsiasi server.
 
-## Getting started
+## Cosa realizzare?
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
+- Gestire la parte visiva in HTML e Bootstrap 5 creando le seguenti sezioni (Login, Dashboard utente, Lista di tutti i libri, singolo libro, profilo utente, carrello, lista ordini).
+- Tutte le seguenti viste dovranno essere renderizzate da una chiamata al server per ottenere la visualizzazione dei dati.
+- E' possibile interagire via messaggi con il proprio collega che realizza gli endpoint api tramite il software teams.
+- Nel gruppo di teams (Alten - React Native) nella sezione wiki è spiegato come connettere il proprio account alla repo GitLab
 ## Add your files
 
 - [ ] [Create](https://gitlab.com/-/experiment/new_project_readme_content:267f6c6417d0082526df41829dcb38e0?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://gitlab.com/-/experiment/new_project_readme_content:267f6c6417d0082526df41829dcb38e0?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
