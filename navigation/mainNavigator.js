@@ -16,7 +16,7 @@ const HomePageStackNavigator = createNativeStackNavigator();
 const HomePageNavigatorComponent = props => {
     return (
         <HomePageStackNavigator.Navigator>
-            <HomePageStackNavigator.Screen name='HomePage' component={HomePage} />
+            <HomePageStackNavigator.Screen name='HomePage' component={HomePage} options={{title: 'Book Store'}}/>
             <HomePageStackNavigator.Screen name='BookDetailPage' component={BookDetailPage} />
         </HomePageStackNavigator.Navigator>
     );
@@ -31,7 +31,8 @@ const HomePageTabNavigatorComponent = props => {
                 name='HomePageStack' 
                 component={HomePageNavigatorComponent} 
                 options={{
-                    headerShown: false
+                    headerShown: false,
+                    gestureEnabled: false
                 }}    
             />
             <HomePageTabNavigator.Screen name='CartPage' component={CartPage} />
@@ -52,7 +53,14 @@ const MainNavigationContainer = () => {
                 </MainStackNavigator.Group>
 
                 <MainStackNavigator.Group>
-                    <MainStackNavigator.Screen name='LoginPage' component={LoginPage} />
+                    <MainStackNavigator.Screen 
+                        name='LoginPage' 
+                        component={LoginPage} 
+                        options={{
+                            headerShown: false,
+                            gestureEnabled: false
+                        }}
+                    />
                 </MainStackNavigator.Group>
 
                 <MainStackNavigator.Group>
@@ -60,7 +68,8 @@ const MainNavigationContainer = () => {
                         name='HomePageTab' 
                         component={HomePageTabNavigatorComponent} 
                         options={{
-                            headerShown: false
+                            headerShown: false,
+                            gestureEnabled: false
                         }} 
                     />
                 </MainStackNavigator.Group>

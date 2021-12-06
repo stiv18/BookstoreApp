@@ -7,7 +7,8 @@ const StartUpPage = props => {
             <Text>
                 Start Up Page
             </Text>
-            <Button title='HomePage' onPress={()=>{props.navigation.navigate('HomePageTab')}} ></Button>
+            <Button title='Home Page' onPress={()=>{props.navigation.navigate('HomePageTab')}} ></Button>
+            <Button title='Login Page' onPress={()=>{props.navigation.navigate('LoginPage')}} ></Button>
         </View>
     );
 };
