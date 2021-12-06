@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { 
     View, 
     Text, 
@@ -8,24 +9,50 @@ import {
     Image,
     KeyboardAvoidingView
 } from 'react-native';
+
 import PrimaryButton from '../components/button-primary';
 import SecondaryButton from '../components/button-secondary';
+import * as authActions from '../store/action/auth';
 
 const LoginPage = props => {
+
+    const dispatch = useDispatch();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
+    const emailFieldHandler = enteredText => {
+        setEmail(enteredText);
+    }
+
+    const passwordFieldHandler = enteredText => {
+        setPassword(enteredText);
+    }
+
+    const loginButtonPressed = () => {
+        try {
+            dispatch(authActions.login(email, password));
+            props.navigation.navigate('HomePageTab');
+        } catch(err) {
+            console.log(err.message);
+        }
+    }
+
     return (
         <ScrollView>
         <KeyboardAvoidingView behavior='padding' style={styles.screen}>
             <Image
-                style={{width: 100, height: 100, marginTop: 128}} 
+                style={{width: 128, height: 128, marginTop: 128}} 
                 source={{uri: 'https://i.pinimg.com/originals/ff/fb/48/fffb481f28a395fb8ad93e7ecd8f2ec7.png'}} 
             />
             <Text style={{marginBottom: 48, fontSize: 24, fontWeight: '100'}}>Books</Text>
             <View style={styles.loginContainer}>
-                <TextInput style={styles.emailField} placeholder='Email' />
-                <TextInput style={styles.passwordField} secureTextEntry={true} placeholder='Password' />
+                <TextInput style={styles.emailField} placeholder='Email' onChangeText={emailFieldHandler} value={email} />
+                <TextInput style={styles.passwordField} secureTextEntry={true} placeholder='Password' on onChangeText={passwordFieldHandler} value={password} />
             </View>
             <View style={styles.buttonsContainer}>
-                <PrimaryButton>Login</PrimaryButton>
+                <PrimaryButton onPress={loginButtonPressed}>Login</PrimaryButton>
                 <SecondaryButton>Sign Up</SecondaryButton>
             </View>
         </KeyboardAvoidingView>

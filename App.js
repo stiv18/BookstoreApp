@@ -1,11 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import ReduxThunk from 'redux-thunk';
 
 import MainNavigationContainer from './navigation/mainNavigator';
+import authReducer from './store/reducer/auth';
+
+const rootReducer = combineReducers({
+  auth: authReducer
+});
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk))
 
 export default function App() {
   return (
-    <MainNavigationContainer></MainNavigationContainer>
+    <Provider store={store}>
+      <MainNavigationContainer></MainNavigationContainer>
+    </Provider>
+    
   );
 }
 
