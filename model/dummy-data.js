@@ -9,7 +9,7 @@ export const BOOKS = [
         'Novel', 
         '', 
         'Neri Pozza', 
-        null 
+        'https://m.media-amazon.com/images/I/51R4ul1wsSL.jpg'
     ),
     new Book(
         'b2', 
@@ -20,7 +20,7 @@ export const BOOKS = [
         'Novel', 
         '', 
         'Bompiani', 
-        null 
+        'https://images-na.ssl-images-amazon.com/images/I/71PzpjtTprL.jpg' 
     ),
     new Book(
         'b3', 
@@ -31,7 +31,7 @@ export const BOOKS = [
         'Novel', 
         '', 
         'Einaudi', 
-        null 
+        'https://images-na.ssl-images-amazon.com/images/I/31ftjnY1NjL._SX312_BO1,204,203,200_.jpg' 
     ),
     new Book(
         'b4', 
@@ -42,7 +42,7 @@ export const BOOKS = [
         'Novel', 
         '', 
         'Mondadori', 
-        null 
+        'https://images-na.ssl-images-amazon.com/images/I/71Ra6rxrYAL.jpg' 
     ),
     new Book(
         'b5', 
@@ -53,7 +53,7 @@ export const BOOKS = [
         'Novel', 
         '', 
         'Einaudi', 
-        null 
+        'https://m.media-amazon.com/images/I/415kzhqycDL.jpg' 
     ),
 ];
 

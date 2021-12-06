@@ -16,8 +16,18 @@ const HomePageStackNavigator = createNativeStackNavigator();
 const HomePageNavigatorComponent = props => {
     return (
         <HomePageStackNavigator.Navigator>
-            <HomePageStackNavigator.Screen name='HomePage' component={HomePage} options={{title: 'Book Store'}}/>
-            <HomePageStackNavigator.Screen name='BookDetailPage' component={BookDetailPage} />
+            <HomePageStackNavigator.Screen 
+                name='HomePage' 
+                component={HomePage} 
+                options={{title: 'Book Store'}}/>
+            <HomePageStackNavigator.Screen 
+                name='BookDetailPage' 
+                component={BookDetailPage} 
+                options={{
+                    presentation: 'modal',
+                    headerShown: false
+                }}
+            />
         </HomePageStackNavigator.Navigator>
     );
 };

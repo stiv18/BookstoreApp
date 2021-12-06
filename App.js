@@ -6,9 +6,11 @@ import ReduxThunk from 'redux-thunk';
 
 import MainNavigationContainer from './navigation/mainNavigator';
 import authReducer from './store/reducer/auth';
+import booksReducer from './store/reducer/books';
 
 const rootReducer = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  books: booksReducer
 });
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk))
 
