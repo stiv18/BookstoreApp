@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, Dimensions } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -21,6 +21,14 @@ const CartPage = props => {
         }
         return transformedCartItems;
     });
+
+    const loadCart = useCallback( async () => {
+        dispatch(cartActions.fetchCartItems());
+    }, [dispatch])
+
+    useEffect(()=>{
+        loadCart();
+    }, [loadCart])
 
     const removeCartItem = (id) => {
         dispatch(cartActions.removeFromCart(id))

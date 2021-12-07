@@ -1,5 +1,6 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../action/cart';
+import { ADD_TO_CART, REMOVE_FROM_CART, SET_CART } from '../action/cart';
 import CartItem from '../../model/cartItem';
+import CartPage from '../../screen/CartPage';
 
 const initialState = {
     items: {},
@@ -8,6 +9,15 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case SET_CART: 
+          if (!action.cart) {
+            return initialState;
+          }
+          return {
+            ...state,
+            items: action.cart.items,
+            totalAmount: action.cart.totalAmount
+          }
         case ADD_TO_CART:
           const addedProduct = action.book;
           const prodPrice = addedProduct.price;
