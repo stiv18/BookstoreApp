@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, FlatList } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, FlatList, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
+import { AntDesign } from '@expo/vector-icons';
 
 import PrimaryButton from '../components/button-primary';
-import SecondaryButton from '../components/button-secondary';
 import DetailItem from '../components/detailItem';
 
 const BookDetailPage = props => {
@@ -19,14 +19,20 @@ const BookDetailPage = props => {
         publisher: book.publisher
     }
 
-    const renderDetails = itemData => {
-        return(
-            <Text>itemData.genre</Text>
-        );
-    }
-
     return (
         <ScrollView>
+            <TouchableOpacity 
+                style={{
+                    width: '99%', 
+                    alignItems: 'flex-end',
+                    marginTop: 16
+                }}
+                onPress={() => {
+                    props.navigation.goBack();
+                }}
+            >
+                <AntDesign style={{marginRight: 8}} name="closecircle" size={21} color="#bbb" />
+            </TouchableOpacity>
             <View style={styles.screen}>
                 <View style={styles.imageContainer} >
                     <Image style={styles.image} source={{uri: book.coverImage}} />
@@ -39,9 +45,8 @@ const BookDetailPage = props => {
                     <PrimaryButton>Add to cart  |  {book.price.toFixed(2)}€</PrimaryButton>
                 </View>
                 <ScrollView
-                    style={{width: '100%'}}
-                    pagingEnabled={false}
                     horizontal={true}
+                    showsHorizontalScrollIndicator={false}
                 >
                     <DetailItem title='GENRE'>{details.genre}</DetailItem>
                     <DetailItem title='LENGTH'>{details.length}</DetailItem>
@@ -58,7 +63,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 32
     },
     imageContainer: {
         height: 300,

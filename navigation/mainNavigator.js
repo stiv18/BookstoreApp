@@ -3,6 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 import HomePage from '../screen/HomePage';
 import BookDetailPage from '../screen/BookDetailPage';
 import CartPage from '../screen/CartPage';
@@ -36,18 +38,56 @@ const HomePageTabNavigator = createBottomTabNavigator();
 
 const HomePageTabNavigatorComponent = props => {
     return (
-        <HomePageTabNavigator.Navigator>
+        <HomePageTabNavigator.Navigator
+            screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color, size }) => {
+                    let iconName;
+
+                    if (route.name === 'HomePageStack') {
+                        iconName = focused ? 'book' : 'book-outline';
+                    } else if (route.name === 'CartPage') {
+                        iconName = focused ? 'cart' : 'cart-outline';
+                    } else if (route.name === 'OrdersPage') {
+                        iconName = focused ? 'library' : 'library-outline';
+                    } else if (route.name === 'ProfilePage') {
+                        iconName = focused ? 'person' : 'person-outline';
+                    }
+
+                    return <Ionicons name={iconName} size={size} color={color} />;
+                },
+                tabBarActiveTintColor: 'black',
+            })}
+        >
             <HomePageTabNavigator.Screen 
                 name='HomePageStack' 
                 component={HomePageNavigatorComponent} 
                 options={{
+                    title: 'Books',
                     headerShown: false,
                     gestureEnabled: false
                 }}    
             />
-            <HomePageTabNavigator.Screen name='CartPage' component={CartPage} />
-            <HomePageTabNavigator.Screen name='OrdersPage' component={OrdersPage} />
-            <HomePageTabNavigator.Screen name='ProfilePage' component={ProfilePage} />
+            <HomePageTabNavigator.Screen 
+                name='CartPage' 
+                component={CartPage} 
+                options={{
+                    title: 'Cart'
+                }}    
+            />
+            <HomePageTabNavigator.Screen 
+                name='OrdersPage' 
+                component={OrdersPage} 
+                options={{
+                    title: 'Orders'
+                }}    
+            />
+            <HomePageTabNavigator.Screen 
+                name='ProfilePage' 
+                component={ProfilePage}
+                options={{
+                    title: 'Profile'
+                }} 
+            />
         </HomePageTabNavigator.Navigator>
     );
 };

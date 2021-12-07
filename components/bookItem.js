@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import Price from './price';
 
 const BookItem = props => {
     return(
@@ -15,9 +16,7 @@ const BookItem = props => {
             <View style={styles.infoContainer}>
                 <Text style={styles.title}>{props.title}</Text>
                 <Text style={styles.author}>{props.author}</Text>
-                <View style={styles.priceContainer}>
-                    <Text style={styles.price}>{props.price}€</Text>
-                </View>
+                <Price>{props.price}</Price>
             </View>
         </TouchableOpacity>
         </View>
@@ -58,19 +57,6 @@ const styles = StyleSheet.create({
         color: 'grey',
         marginBottom: 4
     },
-    priceContainer: {
-        width: '40%',
-        height: 20,
-        borderRadius: 10,
-        borderColor: 'black',
-        borderWidth: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 2
-    },
-    price: {
-        fontSize: 12        
-    }
 });
 
 export default BookItem;
