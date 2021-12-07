@@ -52,7 +52,7 @@ const LoginPage = props => {
                 <TextInput style={styles.passwordField} secureTextEntry={true} placeholder='Password' on onChangeText={passwordFieldHandler} value={password} />
             </View>
             <View style={styles.buttonsContainer}>
-                <PrimaryButton onPress={loginButtonPressed}>Login</PrimaryButton>
+                <PrimaryButton style={{marginBottom: 16}} onPress={loginButtonPressed}>Login</PrimaryButton>
                 <SecondaryButton>Sign Up</SecondaryButton>
             </View>
         </KeyboardAvoidingView>

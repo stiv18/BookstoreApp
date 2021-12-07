@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const SecondaryButton = props => {
     return (
-        <TouchableOpacity style={styles.secondary}>
+        <TouchableOpacity style={[styles.secondary, props.style]}>
             <Text>{props.children}</Text>
         </TouchableOpacity>
     );

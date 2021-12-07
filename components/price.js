@@ -12,6 +12,7 @@ const Price = props => {
 const styles = StyleSheet.create({
     priceContainer: {
         width: '40%',
+        maxWidth: 50,
         height: 20,
         borderRadius: 10,
         borderColor: 'black',

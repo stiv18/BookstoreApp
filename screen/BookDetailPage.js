@@ -42,7 +42,7 @@ const BookDetailPage = props => {
                     <Text style={{textAlign: 'center'}}>{book.author}</Text>
                 </View>
                 <View style={styles.buttonsContainer} >
-                    <PrimaryButton>Add to cart  |  {book.price.toFixed(2)}€</PrimaryButton>
+                    <PrimaryButton style={{marginBottom: 16}}>Add to cart  |  {book.price.toFixed(2)}€</PrimaryButton>
                 </View>
                 <ScrollView
                     horizontal={true}

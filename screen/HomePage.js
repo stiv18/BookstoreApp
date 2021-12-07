@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import BookItem from '../components/bookItem';
 
 import * as booksActions from '../store/action/books';
+import BookItem from '../components/bookItem';
 
 const HomePage = props => {
 
