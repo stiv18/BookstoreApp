@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, FlatList, TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { AntDesign } from '@expo/vector-icons';
 
 import PrimaryButton from '../components/button-primary';
 import DetailItem from '../components/detailItem';
+import * as cartActions from '../store/action/cart';
 
 const BookDetailPage = props => {
+
+    const dispatch = useDispatch();
+
+    const [isAdded, setIsAdded] = useState(false);
 
     const bookId = props.route.params.id;
 
@@ -18,6 +23,11 @@ const BookDetailPage = props => {
         length: book.length,
         publisher: book.publisher
     }
+
+    const addToCartPressed = () => {
+        dispatch(cartActions.addToCart(book));
+        setIsAdded(true);
+    };
 
     return (
         <ScrollView>
@@ -42,7 +52,17 @@ const BookDetailPage = props => {
                     <Text style={{textAlign: 'center'}}>{book.author}</Text>
                 </View>
                 <View style={styles.buttonsContainer} >
-                    <PrimaryButton style={{marginBottom: 16}}>Add to cart  |  {book.price.toFixed(2)}€</PrimaryButton>
+                    <PrimaryButton
+                        onPress={addToCartPressed}
+                    >
+                        Add to cart  |  {book.price.toFixed(2)}€
+                    </PrimaryButton>
+                    {
+                    (isAdded) ? 
+                        <Text style={{color: 'grey'}}>Added to cart</Text>
+                    : 
+                        <Text style={{color: '#ccc'}}></Text>
+                    }
                 </View>
                 <ScrollView
                     horizontal={true}
@@ -95,7 +115,8 @@ const styles = StyleSheet.create({
     buttonsContainer: {
         width: '100%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: 16
     }
 });
 

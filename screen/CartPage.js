@@ -1,36 +1,40 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { } from 'react';
 import { View, Text, StyleSheet, FlatList, Dimensions } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import * as booksActions from '../store/action/books';
 import PrimaryButton from '../components/button-primary';
 import CartItem from '../components/cartItem';
+import * as cartActions from '../store/action/cart';
 
 const CartPage = props => {
 
     const dispatch = useDispatch();
 
-    const books = useSelector( state => state.books.books);
-
-    const loadBooks = useCallback( async () => {
-        try {
-            await dispatch(booksActions.fetchBooks());
-        } catch(err) {
-            console.log(err.message);
+    const totalAmount = useSelector( state => state.cart.totalAmount);
+    const books = useSelector( state => {
+        const transformedCartItems = [];
+        for(let key in state.cart.items) {
+            transformedCartItems.push({
+                book: state.cart.items[key].book, 
+                qta: state.cart.items[key].quantity
+            });
         }
-    }, [dispatch]);
+        return transformedCartItems;
+    });
 
-    useEffect(()=>{
-        loadBooks();
-    }, [loadBooks]);
+    const removeCartItem = (id) => {
+        dispatch(cartActions.removeFromCart(id))
+    }
 
     const renderCartItem = itemData => {
         return (
             <CartItem
-                title={itemData.item.title}
-                author={itemData.item.author}
-                image={itemData.item.coverImage}
-                price={itemData.item.price.toFixed(2)}
+                title={itemData.item.book.title}
+                author={itemData.item.book.author}
+                image={itemData.item.book.coverImage}
+                price={itemData.item.book.price.toFixed(2)}
+                quantity={itemData.item.qta}
+                onLongPress={() => {removeCartItem(itemData.item.book.id)}}
             />
         );
     }
@@ -41,13 +45,14 @@ const CartPage = props => {
                 numColumns={Dimensions.get('window').width < 400 ? 1 : 2}
                 showsVerticalScrollIndicator={false}
                 style={{flex: 1}} 
+                keyExtractor={item => item.book.id}
                 renderItem={renderCartItem}   
                 data= {books} 
             />
             <View style={styles.orderNowContainer}>
                 <View style={styles.amountTotalContainer}>
                     <Text style={{fontWeight: '500'}}>Subtotal Cart</Text>
-                    <Text>€19.00</Text>
+                    <Text>€{totalAmount.toFixed(2)}</Text>
                 </View>
                 <View style={{width: '100%', alignItems: 'center'}}>
                     <PrimaryButton>Order Now</PrimaryButton>

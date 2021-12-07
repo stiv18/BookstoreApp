@@ -9,14 +9,17 @@ const CartItem = props => {
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
         }}>
-            <TouchableOpacity style={styles.itemContainer} onPress={props.onPress}>
+            <TouchableOpacity style={styles.itemContainer} onPress={props.onPress} onLongPress={props.onLongPress}>
                 <View style={styles.imageContainer}>
                     <Image resizeMode='cover' style={styles.image} source={{uri: props.image}} />
                 </View>
                 <View style={styles.infoContainer}>
                     <Text style={styles.title}>{props.title}</Text>
                     <Text style={styles.author}>{props.author}</Text>
-                    <Price>{props.price}</Price>
+                    <View style={{flexDirection: 'row'}}>
+                        <Price>{props.price}</Price>
+                        <Text> x{props.quantity}</Text>
+                    </View>
                 </View>
             </TouchableOpacity>
         </View>
