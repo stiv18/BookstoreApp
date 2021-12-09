@@ -1,24 +1,38 @@
 import React from 'react';
-import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, View, Text, TouchableOpacity, TouchableNativeFeedback, Platform } from 'react-native';
 import Price from './price';
 
 const BookItem = props => {
+
+    let TouchableCmp = TouchableOpacity;
+
+    if (Platform.OS === 'android' && Platform.Version >= 21) {
+        TouchableCmp = TouchableNativeFeedback;
+    }
+
     return(
         <View style={{
             flex: 0.5, 
             justifyContent: 'center',
             alignItems: 'center',
         }}>
-        <TouchableOpacity style={styles.itemContainer} onPress={props.onPress}>
-            <View style={styles.imageContainer}>
-                <Image resizeMode='cover' style={styles.image} source={{uri: props.image}} />
+        <TouchableCmp 
+            style={{
+                width: '100%'
+            }} 
+            onPress={props.onPress}
+        >
+            <View style={styles.itemContainer}>
+                <View style={styles.imageContainer}>
+                    <Image resizeMode='cover' style={styles.image} source={{uri: props.image}} />
+                </View>
+                <View style={styles.infoContainer}>
+                    <Text style={styles.title}>{props.title}</Text>
+                    <Text style={styles.author}>{props.author}</Text>
+                    <Price>{props.price}</Price>
+                </View>
             </View>
-            <View style={styles.infoContainer}>
-                <Text style={styles.title}>{props.title}</Text>
-                <Text style={styles.author}>{props.author}</Text>
-                <Price>{props.price}</Price>
-            </View>
-        </TouchableOpacity>
+        </TouchableCmp>
         </View>
     );
 };
@@ -41,6 +55,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.4,
         shadowRadius: 4,
 
+        backgroundColor: 'white',
         elevation: 4,
     },
     image: {

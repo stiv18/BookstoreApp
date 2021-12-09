@@ -7,9 +7,9 @@ const OrderItem = props => {
     return (
         <View style={styles.item}>
             <View style={styles.infoContainer}>
-                <Text style={{fontWeight: 'bold'}}>{props.id}</Text>
-                <Text>Total: {props.items} items</Text>
-                <Text>Date: {props.date}</Text>
+                <Text style={{fontWeight: 'bold', fontSize: 18}}>{props.id}</Text>
+                <Text style={{fontWeight: '300'}}>Total: {props.items} items</Text>
+                <Text style={{fontWeight: '300'}}>Date: {props.date}</Text>
             </View>
             <Price>{props.totalAmount}</Price>
         </View>

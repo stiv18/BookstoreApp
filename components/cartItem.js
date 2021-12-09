@@ -1,27 +1,36 @@
 import React from 'react';
-import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, View, Text, TouchableOpacity, TouchableNativeFeedback, Platform } from 'react-native';
 import Price from './price';
 
 const CartItem = props => {
+
+    let TouchableCmp = TouchableOpacity;
+
+    if (Platform.OS === 'android' && Platform.Version >= 21) {
+        TouchableCmp = TouchableNativeFeedback;
+    }
+
     return(
         <View style={{
             flex: 0.5, 
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
         }}>
-            <TouchableOpacity style={styles.itemContainer} onPress={props.onPress} onLongPress={props.onLongPress}>
-                <View style={styles.imageContainer}>
-                    <Image resizeMode='cover' style={styles.image} source={{uri: props.image}} />
-                </View>
-                <View style={styles.infoContainer}>
-                    <Text style={styles.title}>{props.title}</Text>
-                    <Text style={styles.author}>{props.author}</Text>
-                    <View style={{flexDirection: 'row'}}>
-                        <Price>{props.price}</Price>
-                        <Text> x{props.quantity}</Text>
+            <TouchableCmp onPress={props.onPress} onLongPress={props.onLongPress}>
+                <View style={styles.itemContainer} >
+                    <View style={styles.imageContainer}>
+                        <Image resizeMode='cover' style={styles.image} source={{uri: props.image}} />
+                    </View>
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.title}>{props.title}</Text>
+                        <Text style={styles.author}>{props.author}</Text>
+                        <View style={{flexDirection: 'row'}}>
+                            <Price>{props.price}</Price>
+                            <Text> x{props.quantity}</Text>
+                        </View>
                     </View>
                 </View>
-            </TouchableOpacity>
+            </TouchableCmp>
         </View>
     );
 };
@@ -44,6 +53,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.4,
         shadowRadius: 4,
 
+        backgroundColor: 'white',
         elevation: 4,
     },
     image: {

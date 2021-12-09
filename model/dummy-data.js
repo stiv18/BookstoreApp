@@ -7,7 +7,7 @@ export const BOOKS = [
         'Natsume Soseki', 
         14.00, 270, 
         'Novel', 
-        '', 
+        '1981', 
         'Neri Pozza', 
         'https://m.media-amazon.com/images/I/51R4ul1wsSL.jpg'
     ),
@@ -18,7 +18,7 @@ export const BOOKS = [
         14.00, 
         420, 
         'Novel', 
-        '', 
+        '2014', 
         'Bompiani', 
         'https://images-na.ssl-images-amazon.com/images/I/71PzpjtTprL.jpg' 
     ),
@@ -29,7 +29,7 @@ export const BOOKS = [
         14.00, 
         352, 
         'Novel', 
-        '', 
+        '1963', 
         'Einaudi', 
         'https://images-na.ssl-images-amazon.com/images/I/31ftjnY1NjL._SX312_BO1,204,203,200_.jpg' 
     ),
@@ -40,7 +40,7 @@ export const BOOKS = [
         9.00, 
         111, 
         'Novel', 
-        '', 
+        '1952', 
         'Mondadori', 
         'https://images-na.ssl-images-amazon.com/images/I/71Ra6rxrYAL.jpg' 
     ),
@@ -51,7 +51,7 @@ export const BOOKS = [
         9.00, 
         120, 
         'Novel', 
-        '', 
+        '2010', 
         'Einaudi', 
         'https://m.media-amazon.com/images/I/415kzhqycDL.jpg' 
     ),

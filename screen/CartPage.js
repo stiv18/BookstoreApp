@@ -33,15 +33,22 @@ const CartPage = props => {
         loadCart();
     }, [loadCart])
 
-    const removeCartItem = (id) => {
-        dispatch(cartActions.removeFromCart(id))
-    }
-
     const orderNowButtonPressed = async () => {
         setIsLoading(true);
         await dispatch(ordersActions.addOrder());
         setIsLoading(false)
     }
+
+    const removeCartItem = (id) => {
+        dispatch(cartActions.removeFromCart(id))
+    }
+
+    const cartItemPressed = (id, title) => {
+        props.navigation.navigate('BookDetailPage', {
+            id: id,
+            title: title
+        })
+    };
 
     const renderCartItem = itemData => {
         return (
@@ -51,6 +58,7 @@ const CartPage = props => {
                 image={itemData.item.book.coverImage}
                 price={itemData.item.book.price.toFixed(2)}
                 quantity={itemData.item.qta}
+                onPress={() => {cartItemPressed(itemData.item.book.id, itemData.item.book.title)}}
                 onLongPress={() => {removeCartItem(itemData.item.book.id)}}
             />
         );

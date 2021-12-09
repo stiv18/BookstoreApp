@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, FlatList, TouchableOpacity, Platform } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -19,7 +19,7 @@ const BookDetailPage = props => {
 
     const details = {
         genre: book.genre,
-        releaseData: book.releaseData,
+        releaseDate: book.releaseDate,
         length: book.length,
         publisher: book.publisher
     }
@@ -35,7 +35,7 @@ const BookDetailPage = props => {
                 style={{
                     width: '99%', 
                     alignItems: 'flex-end',
-                    marginTop: 16
+                    marginTop: Platform.OS == 'ios' ? 16 : 38
                 }}
                 onPress={() => {
                     props.navigation.goBack();
@@ -72,7 +72,7 @@ const BookDetailPage = props => {
                     <DetailItem title='GENRE'>{details.genre}</DetailItem>
                     <DetailItem title='LENGTH'>{details.length}</DetailItem>
                     <DetailItem title='PUBLISHER'>{details.publisher}</DetailItem>
-                    <DetailItem title='DATE'>{details.releaseData}</DetailItem>
+                    <DetailItem title='YEAR'>{details.releaseDate}</DetailItem>
                 </ScrollView>
             </View>
         </ScrollView>
@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.4,
         shadowRadius: 5,
 
+        backgroundColor: 'white',
         elevation: 4,
         justifyContent: 'center',
         alignItems: 'center',

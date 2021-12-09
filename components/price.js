@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Platform } from "react-native";
 
 const Price = props => {
     return (
@@ -17,12 +17,12 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: 'black',
         borderWidth: 1,
-        justifyContent: 'center',
         alignItems: 'center',
-        padding: 2
+        justifyContent: 'center',
+        padding: Platform.OS === 'ios' ? 2 : 0
     },
     price: {
-        fontSize: 12        
+        fontSize: 12       
     }
 });
 

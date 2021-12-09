@@ -19,7 +19,6 @@ const addToAsyncStorageCart = async (book) => {
     }
   } else {
     const cart = JSON.parse(cartState);
-    console.log(cart)
     if (cart.items[book.id]) {
       try {
         await AsyncStorage.setItem('cartState', JSON.stringify({

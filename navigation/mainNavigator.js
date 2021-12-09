@@ -34,6 +34,27 @@ const HomePageNavigatorComponent = props => {
     );
 };
 
+const CartPageStackNavigator = createNativeStackNavigator();
+
+const CartPageNavigatorComponent = props => {
+    return (
+        <CartPageStackNavigator.Navigator>
+            <CartPageStackNavigator.Screen 
+                name='CartPage' 
+                component={CartPage} 
+                options={{title: 'Cart'}}/>
+            <CartPageStackNavigator.Screen 
+                name='BookDetailPage' 
+                component={BookDetailPage} 
+                options={{
+                    presentation: 'modal',
+                    headerShown: false
+                }}
+            />
+        </CartPageStackNavigator.Navigator>
+    );
+};
+
 const HomePageTabNavigator = createBottomTabNavigator();
 
 const HomePageTabNavigatorComponent = props => {
@@ -45,7 +66,7 @@ const HomePageTabNavigatorComponent = props => {
 
                     if (route.name === 'HomePageStack') {
                         iconName = focused ? 'book' : 'book-outline';
-                    } else if (route.name === 'CartPage') {
+                    } else if (route.name === 'CartPageStack') {
                         iconName = focused ? 'cart' : 'cart-outline';
                     } else if (route.name === 'OrdersPage') {
                         iconName = focused ? 'library' : 'library-outline';
@@ -68,10 +89,12 @@ const HomePageTabNavigatorComponent = props => {
                 }}    
             />
             <HomePageTabNavigator.Screen 
-                name='CartPage' 
-                component={CartPage} 
+                name='CartPageStack' 
+                component={CartPageNavigatorComponent} 
                 options={{
-                    title: 'Cart'
+                    title: 'Cart',
+                    headerShown: false,
+                    gestureEnabled: false
                 }}    
             />
             <HomePageTabNavigator.Screen 
