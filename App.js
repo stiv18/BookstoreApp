@@ -8,11 +8,13 @@ import MainNavigationContainer from './navigation/mainNavigator';
 import authReducer from './store/reducer/auth';
 import booksReducer from './store/reducer/books';
 import cartReducer from './store/reducer/cart';
+import ordersReducer from './store/reducer/order';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   books: booksReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  orders: ordersReducer
 });
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk))
 

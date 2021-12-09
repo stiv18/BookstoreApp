@@ -1,6 +1,8 @@
 import { ADD_TO_CART, REMOVE_FROM_CART, SET_CART } from '../action/cart';
 import CartItem from '../../model/cartItem';
-import CartPage from '../../screen/CartPage';
+import { ADD_ORDER } from '../action/order';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const initialState = {
     items: {},
@@ -60,6 +62,9 @@ export default (state = initialState, action) => {
             items: updatedCartItems,
             totalAmount: state.totalAmount - selectedCartItem.book.price
           };
+        case ADD_ORDER:
+          AsyncStorage.removeItem('cartState');
+          return initialState;
     }
    
     return state;

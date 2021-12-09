@@ -79,8 +79,6 @@ export const fetchCartItems = () => {
     const cartState = await AsyncStorage.getItem('cartState');
     const cart = JSON.parse(cartState);
 
-    console.log('Fetch', cart)
-
     dispatch({ type: SET_CART, cart: cart })
   }
 }

@@ -53,6 +53,7 @@ const BookDetailPage = props => {
                 </View>
                 <View style={styles.buttonsContainer} >
                     <PrimaryButton
+                        style={{maxWidth: 400}}
                         onPress={addToCartPressed}
                     >
                         Add to cart  |  {book.price.toFixed(2)}€
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 16
+        marginBottom: 8
     }
 });
 

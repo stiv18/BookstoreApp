@@ -1,14 +1,17 @@
-import React, { useCallback, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, Dimensions } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { View, Text, StyleSheet, FlatList, Dimensions, ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import PrimaryButton from '../components/button-primary';
 import CartItem from '../components/cartItem';
 import * as cartActions from '../store/action/cart';
+import * as ordersActions from '../store/action/order';
 
 const CartPage = props => {
 
     const dispatch = useDispatch();
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const totalAmount = useSelector( state => state.cart.totalAmount);
     const books = useSelector( state => {
@@ -32,6 +35,12 @@ const CartPage = props => {
 
     const removeCartItem = (id) => {
         dispatch(cartActions.removeFromCart(id))
+    }
+
+    const orderNowButtonPressed = async () => {
+        setIsLoading(true);
+        await dispatch(ordersActions.addOrder());
+        setIsLoading(false)
     }
 
     const renderCartItem = itemData => {
@@ -63,7 +72,11 @@ const CartPage = props => {
                     <Text>€{totalAmount.toFixed(2)}</Text>
                 </View>
                 <View style={{width: '100%', alignItems: 'center'}}>
-                    <PrimaryButton>Order Now</PrimaryButton>
+                    {(!isLoading) ? (
+                        <PrimaryButton style={{maxWidth: 500}} onPress={orderNowButtonPressed} >Order Now</PrimaryButton>
+                    ) : (
+                        <ActivityIndicator size="small" color='#000' />
+                    )}
                     <Text style={{color: 'grey', marginTop: 4}}>Long-press on an Item to remove.</Text>
                 </View>
             </View>
