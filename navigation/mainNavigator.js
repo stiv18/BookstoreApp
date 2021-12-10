@@ -122,7 +122,14 @@ const MainNavigationContainer = () => {
         <NavigationContainer>
             <MainStackNavigator.Navigator>
                 <MainStackNavigator.Group>
-                    <MainStackNavigator.Screen name='StartUpPage' component={StartUpPage} />
+                    <MainStackNavigator.Screen 
+                        name='StartUpPage' 
+                        component={StartUpPage} 
+                        options={{
+                            headerShown: false,
+                            gestureEnabled: false
+                        }} 
+                    />
                 </MainStackNavigator.Group>
 
                 <MainStackNavigator.Group>

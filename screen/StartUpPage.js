@@ -1,15 +1,36 @@
-import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import React, {useCallback, useEffect} from 'react';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const StartUpPage = props => {
+
+    const tryLogin = useCallback( async () => {
+
+        const authState = await AsyncStorage.getItem('userData');
+        
+        if(!authState) {
+            props.navigation.navigate('LoginPage');
+            return;
+        }
+
+        // is token valid?
+        props.navigation.navigate('HomePageTab');
+
+    }, [props.navigation]);
+
+    useEffect(() => {
+        tryLogin();
+    }, [tryLogin]);
+
+    useEffect(() => {
+        const sub = props.navigation.addListener('focus', () => {
+            tryLogin();
+        })
+    }, [props.navigation, tryLogin])
+
     return (
-        <View>
-            <Text>
-                Start Up Page
-            </Text>
-            <Button title='Home Page' onPress={()=>{props.navigation.navigate('HomePageTab')}} ></Button>
-            <Button title='Login Page' onPress={()=>{props.navigation.navigate('LoginPage')}} ></Button>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <ActivityIndicator size='large' />
         </View>
     );
 };
