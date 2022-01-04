@@ -67,9 +67,9 @@ const CartPage = props => {
     return (
         <View style={styles.screen}>
             <FlatList 
-                numColumns={Dimensions.get('window').width < 400 ? 1 : 2}
+                numColumns={Dimensions.get('window').width < 500 ? 1 : 2}
                 showsVerticalScrollIndicator={false}
-                style={{flex: 1}} 
+                style={{width: '100%'}} 
                 keyExtractor={item => item.book.id}
                 renderItem={renderCartItem}   
                 data= {books} 

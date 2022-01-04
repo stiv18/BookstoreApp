@@ -47,6 +47,7 @@ const HomePage = props => {
     return (
         <View style={styles.screen}>
             <FlatList
+                style={styles.list}
                 showsVerticalScrollIndicator={false}
                 numColumns={2}
                 renderItem={renderBookItem}
@@ -58,7 +59,11 @@ const HomePage = props => {
 
 const styles = StyleSheet.create({
     screen: {
-        flex: 1
+        flex: 1,
+        alignItems: 'center'
+    },
+    list: {
+        width: '100%'
     }
 });
 

@@ -18,7 +18,8 @@ const BookItem = props => {
         }}>
         <TouchableCmp 
             style={{
-                width: '100%'
+                width: '100%',
+                alignItems: 'center',
             }} 
             onPress={props.onPress}
         >
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
         height: 320,
         width: '90%',
         maxWidth: 180,
-        padding: 16
+        padding: 16,
     },
     imageContainer: {
         flex: 1,
